@@ -1,0 +1,78 @@
+.home-total {
+    background-color: #1f90e6;
+    color: #fff;
+    height: 15%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    border: none;
+}
+
+.home-monthPick {
+    display: inline-block;
+    width: 33%;
+    padding-left: 20px;
+}
+
+.home-monthPick p:last-child {
+    display: inline-block;
+}
+
+.home-monthPick div {
+    position: absolute;
+    top: 55%;
+    left: 12%;
+}
+
+.home-outcome, .home-income {
+    width: 33%;
+    position: absolute;
+    top: 0;
+}
+
+.home-outcome {
+    left: 34%;
+}
+
+.home-income {
+    right: 0;
+}
+
+.home-outcome:first-child, .home-income:first-child {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 10px;
+}
+
+.home-segment {
+    margin: 10px 16px;
+}
+
+.home-bottom {
+    height: 56px;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    font-size: 19px;
+    color: #1296db;
+    background-color: #f7f7f7;
+}
+
+.home-bottom i {
+    height: 32px;
+    width: 32px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    position: absolute;
+    bottom: 14px;
+    left: 50%;
+    margin-left: -50px;
+}
+
+.home-bottom span {
+    line-height: 56px;
+    margin-right: -30px;
+}
