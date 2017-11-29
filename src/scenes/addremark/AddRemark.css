@@ -1,0 +1,49 @@
+.yime-addremark-detail {
+  width: 100%;
+  height: 75px;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
+.yime-addremark-detail i {
+  position: absolute;
+  bottom: 14.5px;
+  left: 19px;
+  display: inline-block;
+}
+
+.yime-addremark-detail .category, .yime-addremark-detail .money {
+  display: inline-block;
+  text-align: left;
+  position: absolute;
+  bottom: 20px;
+  font-size: 16px;
+}
+
+.yime-addremark-detail .category {
+  left:  60px;
+}
+
+.yime-addremark-detail .money {
+  right: 35px;
+}
+
+.yime-addremark-detail .outSelected::before, .yime-addremark-detail .inSelected::before {
+  content: '';
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  z-index: -1;
+  bottom: 12px;
+  left: 15px;
+}
+
+.yime-addremark-detail .outSelected::before {
+  background-color: #fa6621;
+}
+
+.yime-addremark-detail .inSelected::before {
+  background-color: #98e566;
+}

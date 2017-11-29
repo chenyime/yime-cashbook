@@ -3,7 +3,7 @@ import {
     
 } from 'antd-mobile';
 
-export class Forms extends React.Component {
+export class Forms extends Component {
     constructor(props) {
         super(props);
         this.state = {

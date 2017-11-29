@@ -3,7 +3,7 @@ import {
     
 } from 'antd-mobile';
 
-export class Accounts extends React.Component {
+export class Accounts extends Component {
     constructor(props) {
         super(props);
         this.state = {
