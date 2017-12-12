@@ -1,3 +1,18 @@
+.am-picker-popup-wrap, .am-picker-popup-mask   {
+  z-index: 10000;
+}
+
+.yime-create-date {
+  width: 70px;
+  height: 50px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  color: #ccc;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 5px;
+}
+
 .yime-create-carousel {
 }
 

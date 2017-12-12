@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Icon } from 'components';
 import './TableRow.css'
 import * as classNames from 'classnames';
@@ -12,8 +12,8 @@ export const TableRow = ({ contents, onChange, value, type }) => {
       <div className="yime-items">
           {contents.map(function(item, index) {
               return (
-                  <div className={classNames("item", { outcomeSelected : item.type === value && outcome }, { incomeSelected : item.type === value && income })} onClick={() => onChange(item.type, item.content)}>
-                      <Icon type={item.type} size={24} key={index} />
+                  <div className={classNames("item", { outcomeSelected : item.type === value && outcome }, { incomeSelected : item.type === value && income })} onClick={() => onChange(item.type, item.content)} key={index} >
+                      <Icon type={item.type} size={24} />
                       <p>{item.content}</p>
                   </div>
               );

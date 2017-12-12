@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import * as classNames from 'classnames';
 
 export const Icon = ({ type, size, color, className, onClick = () => {} }) => {

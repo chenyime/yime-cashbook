@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { 
-	NavBar, 
+  NavBar, 
+  TextareaItem,
 } from 'antd-mobile';
 import { Icon } from 'components';
 import * as classNames from 'classnames';
@@ -15,16 +16,35 @@ export class AddRemark extends Component {
     this.history = this.props.history;
   }
 
+  changeTwoDecimal = (v) => {
+    v = (Math.round(v * 100) / 100).toString();
+    let index = v.indexOf('.');
+    if (index < 0) {
+      index = v.length;
+      v += '.';
+    }
+    while (v.length <= index + 2) {
+      v += '0';
+    }
+    return v
+  }
+
   cancelClick = () => {
     this.history.push("/create");
   }
 
   handleConfirm = () => {
     if (this.state.content) {
-      this.history.push({ pathname: "/create", state: { content: this.state.content }});
+      this.history.push({ 
+        pathname: "/create", 
+        state: { content: this.state.content, money: this.state.money, category: this.history.location.state.category, categoryContent: this.history.location.state.categoryContent, type: this.history.location.state.type }});
     } else {
       this.history.push("/create");
     }
+  }
+
+  handleContentChange = (v) => {
+    this.setState({ content: v });
   }
 
   componentDidMount() {
@@ -34,8 +54,10 @@ export class AddRemark extends Component {
         categoryContent: this.history.location.state.categoryContent, 
         money: this.history.location.state.money,
         type: this.history.location.state.type,
+        content: this.history.location.state.content,
       });
     }
+    this.autoFocus.focus();
   }
 
   render() {
@@ -54,10 +76,17 @@ export class AddRemark extends Component {
           <div className={classNames({ outSelected : outcome }, { inSelected : income })}>
             <Icon type={this.state.category} size={24} color="white" />
             <span className="category">{this.state.categoryContent}</span>
-            <span className="money">{this.state.money}</span>
+            <span className="money">{this.changeTwoDecimal(this.state.money)}</span>
           </div>
         </div>
-        
+        <TextareaItem
+          maxLength={50}
+          rows={4}
+          placeholder="说点什么"
+          value={this.state.content}
+          onChange={this.handleContentChange}
+          ref={el => this.autoFocus = el}
+        />
       </div>
     )
   }

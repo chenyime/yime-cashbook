@@ -3,7 +3,9 @@ import {
 	NavBar, 
 	Popover,
 	Carousel,
-	InputItem,
+  DatePicker,
+  Button,
+  WhiteSpace,
 } from 'antd-mobile';
 import { 
   Link,
@@ -39,14 +41,14 @@ const TYPE = { in: '收入', out: '支出' };
 export class Create extends Component {
 	constructor(props) {
     super(props);
-    console.log(props);
 		this.state = {
 			visiable: false,
 			type: TYPE.out,
       category: 'yiban',
       categoryContent: '一般',
-      money: '0.00',
-      content: '添加备注信息',
+      money: '0',
+      content: '',
+      date: new Date(Date.now()),
 		}
     this.history = this.props.history;
 	}
@@ -88,19 +90,26 @@ export class Create extends Component {
     this.setState({ category, categoryContent });
   }
 
-  componentDidMount() {
+  componentWillMount() {
     if(this.history.location.state) {
-      this.setState({ content: this.history.location.state.content });
+      this.setState({ 
+        content: this.history.location.state.content,
+        money: this.history.location.state.money,
+        type: this.history.location.state.type,
+        category: this.history.location.state.category,
+        categoryContent: this.history.location.state.categoryContent,
+       });
     }
   }
 	
 	render() {
+    const { visiable, type, date, content, category, categoryContent, money } = this.state;
 		return (
 			<div>
 				<NavBar mode="light" rightContent={<div onTouchEnd={this.cancelClick}>取消</div>}>
           <Popover
             mask
-            visible={this.state.visiable}
+            visible={visiable}
             overlay={[
               (<Item key="0" value="支出" icon={<Icon className="icon-fukuan" size="16px" />}
               data-seed="logId">支出</Item>), 
@@ -111,29 +120,45 @@ export class Create extends Component {
             onSelect={this.onSelect} 
           >
             <div>
-              {this.state.type}
+              {type}
               <Icon type="xiaosanjiao" size={12} />
             </div>
           </Popover>
 				</NavBar>
+        
+        <DatePicker
+          mode="date"
+          title=""
+          value={date} 
+          onChange={date => this.setState({ date })}
+        >
+          <Button class="yime-create-date">{`${date.getMonth()+1}月${date.getDate()}日`}</Button>
+        </DatePicker>
+
 				<Carousel 
 					className="yime-create-carousel" 
 					autoplay={false} 
 					infinite selectedIndex={0} 
 					swipeSpeed={35} 
 				> 
-					{(this.state.type === TYPE.out ? outdata : indata ).map((item, index) => (
+					{(type === TYPE.out ? outdata : indata ).map((item, index) => (
             <div key={index} style={{ height: "210px" }} >
-						  <CarouselPage contents={item} onChange={this.handleCategorySelect} value={this.state.category} type={this.state.type}/> 
+						  <CarouselPage contents={item} onChange={this.handleCategorySelect} value={category} type={type}/> 
             </div>
 					))}
 				</Carousel>
         
-        <Link to={{ pathname : "/addremark", state : { category: this.state.category, categoryContent: this.state.categoryContent, money: this.state.money, type: this.state.type } }} >
-          <p className="yime-create-content" >{this.state.content}</p>
+        <Link to={{ pathname : "/addremark", state : { category, categoryContent, money, type, content } }} >
+          <input 
+            className="yime-create-content"
+            placeholder="添加备注信息" 
+            value={content}
+            onChange={() => {}}
+          >
+          </input>
         </Link>
 
-				<MoneyEditor onConfirm={this.handleConfirm} onChange={this.handleMoneyChange}/>
+				<MoneyEditor onConfirm={this.handleConfirm} onChange={this.handleMoneyChange} value={money} />
 			</div>
 		);
 	}

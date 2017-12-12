@@ -15,39 +15,46 @@ export class MoneyEditor extends Component  {
   constructor(props) {
     super(props);
     this.state = {
-      inputValue: '0',
+      inputValue: props.value,
     }
   }
 
   handleItemClick = (v) => {
     const { onChange } = this.props;
-    this.handleValueChange(''+this.state.inputValue+v);
-    onChange(this.state.inputValue);
+    let value = this.handleValueChange(''+this.state.inputValue+v);
+    onChange(value);
+    this.setState({ inputValue: value });
   }
 
   handleValueChange = (v) => {
     if (v.length > 1 && v[0] === '0' && v[1] !== '.') {
-      return this.setState({ inputValue: v.substring(1) });
+      return v[1];
     }
 		if (v && !/^(([1-9]\d*)|0)(\.\d{0,2}?)?$/.test(v)) {
 			if (v === '.') {
-				this.setState({ inputValue: '0.' });
+				return "0.";
       }
-      return;
     }
     if (!v) {
-      return this.setState({ inputValue: '0' });
+      return "0";
     }
-		this.setState({ inputValue: v });
+		return v;
 	}
 
   handleDeleteClick = () => {
-    if (this.state.inputValue) {
-      this.handleValueChange(this.state.inputValue.substring(0, this.state.inputValue.length-1));
+    const { onChange } = this.props;
+    if (this.state.inputValue && this.state.inputValue.length > 1) {
+      let value = this.state.inputValue.substring(0, this.state.inputValue.length-1);
+      onChange(value);
+      this.setState({ inputValue: value });
+    } else {
+      this.handleClean();
     }
   }
 
   handleClean = () => {
+    const { onChange } = this.props;
+    onChange("0");
     this.setState({ inputValue: '0' });
   }
 

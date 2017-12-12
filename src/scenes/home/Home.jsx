@@ -16,7 +16,7 @@ import { Icon } from 'components';
 const nowTimeStamp = Date.now();
 const now = new Date(nowTimeStamp);
 
-class Total extends React.Component {
+class Total extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -25,15 +25,16 @@ class Total extends React.Component {
   }
   
   render() {
+    const { date } = this.state;
     return (
       <div className="home-total">
         <div className="home-monthPick">
-          <p>{this.state.date.getFullYear()}年</p>
-          <p>{this.state.date.getMonth()+1}月</p>
+          <p>{date.getFullYear()}年</p>
+          <p>{date.getMonth()+1}月</p>
           <DatePicker 
             mode="month"
-            title="select month"
-            value={this.state.date} 
+            title=""
+            value={date} 
             onChange={date=> this.setState({ date })}
           >
             <i>

@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Icon } from 'components';
+import React from 'react';
 import { TableRow } from './TableRow';
 
 export const CarouselPage = ({ contents, onChange, value, type }) => {
