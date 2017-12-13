@@ -5,7 +5,6 @@ import {
 	Carousel,
   DatePicker,
   Button,
-  WhiteSpace,
 } from 'antd-mobile';
 import { 
   Link,
@@ -62,12 +61,16 @@ export class Create extends Component {
 		if (opt.props.value === TYPE.out) {
 			this.setState({ 
 				visible: false,
-				type: opt.props.value,
+        type: opt.props.value,
+        category: 'yiban',
+        categoryContent: '一般',
 			});
 		} else if (opt.props.value === TYPE.in) {
 			this.setState({ 
 				visible: false,
-				type: opt.props.value,
+        type: opt.props.value,
+        category: 'gongzi',
+        categoryContent: '工资',
 			});
 		}
   };
@@ -78,7 +81,7 @@ export class Create extends Component {
 		});
 	};
   
-  handleConfirm = (v) => {
+  handleConfirm = () => {
 
   }
 
@@ -132,14 +135,14 @@ export class Create extends Component {
           value={date} 
           onChange={date => this.setState({ date })}
         >
-          <Button class="yime-create-date">{`${date.getMonth()+1}月${date.getDate()}日`}</Button>
+          <Button className="yime-create-date">{`${date.getMonth()+1}月${date.getDate()}日`}</Button>
         </DatePicker>
 
 				<Carousel 
 					className="yime-create-carousel" 
 					autoplay={false} 
 					infinite selectedIndex={0} 
-					swipeSpeed={35} 
+          swipeSpeed={35} 
 				> 
 					{(type === TYPE.out ? outdata : indata ).map((item, index) => (
             <div key={index} style={{ height: "210px" }} >
@@ -148,7 +151,7 @@ export class Create extends Component {
 					))}
 				</Carousel>
         
-        <Link to={{ pathname : "/addremark", state : { category, categoryContent, money, type, content } }} >
+        <Link to={{ pathname : "/addremark", state : { category, categoryContent, money, type, content, date : `${date.getMonth()+1}月${date.getDate()}日 星期${"日一二三四五六".split(/(?!\b)/)[date.getDay()]}`, } }} >
           <input 
             className="yime-create-content"
             placeholder="添加备注信息" 

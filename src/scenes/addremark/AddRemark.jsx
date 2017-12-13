@@ -37,7 +37,14 @@ export class AddRemark extends Component {
     if (this.state.content) {
       this.history.push({ 
         pathname: "/create", 
-        state: { content: this.state.content, money: this.state.money, category: this.history.location.state.category, categoryContent: this.history.location.state.categoryContent, type: this.history.location.state.type }});
+        state: { 
+          content: this.state.content, 
+          money: this.state.money, 
+          category: this.state.category, 
+          categoryContent: this.state.categoryContent, 
+          type: this.state.type ,
+        }
+      });
     } else {
       this.history.push("/create");
     }
@@ -55,6 +62,7 @@ export class AddRemark extends Component {
         money: this.history.location.state.money,
         type: this.history.location.state.type,
         content: this.history.location.state.content,
+        date: this.history.location.state.date,
       });
     }
     this.autoFocus.focus();
@@ -73,6 +81,7 @@ export class AddRemark extends Component {
           详情
         </NavBar>
         <div className="yime-addremark-detail">
+          <span className="date">{this.state.date}</span>
           <div className={classNames({ outSelected : outcome }, { inSelected : income })}>
             <Icon type={this.state.category} size={24} color="white" />
             <span className="category">{this.state.categoryContent}</span>

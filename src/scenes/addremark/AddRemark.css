@@ -4,6 +4,13 @@
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   position: relative;
+  padding-top: 10px;
+}
+
+.yime-addremark-detail .date {
+  color: #aaa;
+  font-size: 14px;
+  margin-left: 15px;
 }
 
 .yime-addremark-detail i {

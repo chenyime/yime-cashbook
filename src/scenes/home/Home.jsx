@@ -70,6 +70,8 @@ export const Home = (props) => {
       case 2:
         history.push("/accounts");
         break;
+      default:
+        break;
     }
   };
   
@@ -84,6 +86,8 @@ export const Home = (props) => {
       break;
     case "/accounts":
       index = 2;
+      break;
+    default:
       break;
   }
   
